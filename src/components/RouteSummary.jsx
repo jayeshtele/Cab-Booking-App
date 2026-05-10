@@ -23,7 +23,7 @@ function SummaryRow({ label, value }) {
   );
 }
 
-export default function RouteSummary() {
+export default function RouteSummary({ showMap = true }) {
   const booking = useSelector(selectBooking);
   const selectedCab = useSelector(selectSelectedCab);
   const fare = useSelector(selectFareBreakup);
@@ -31,7 +31,7 @@ export default function RouteSummary() {
 
   return (
     <aside className="flex flex-col gap-5">
-      <RouteMap booking={booking} />
+      {showMap ? <RouteMap booking={booking} /> : null}
 
       <section className="rounded-[8px] border border-[#dfe7f1] bg-white p-4 shadow-sm sm:p-5">
         <div className="flex items-center justify-between gap-3 border-b border-[#edf2f7] pb-4">

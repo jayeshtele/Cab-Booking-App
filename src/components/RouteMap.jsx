@@ -121,7 +121,7 @@ export default function RouteMap({ booking }) {
       <div className="relative">
         <MapContainer
           center={mapCenter}
-          className="route-leaflet-map h-[360px] min-h-[360px] w-full"
+          className="route-leaflet-map relative z-0 h-[360px] min-h-[360px] w-full"
           scrollWheelZoom
           zoom={12}
         >
@@ -164,7 +164,7 @@ export default function RouteMap({ booking }) {
           />
         </MapContainer>
 
-        <div className="absolute right-3 top-3 z-[500] flex flex-wrap gap-2 sm:right-4 sm:top-4">
+        <div className="absolute right-3 top-3 z-10 flex flex-wrap gap-2 sm:right-4 sm:top-4">
           <button
             type="button"
             onClick={handleDirections}
@@ -180,7 +180,7 @@ export default function RouteMap({ booking }) {
           </button>
         </div>
 
-        <div className="route-map-badge absolute bottom-4 left-4 z-[500] max-w-[calc(100%-2rem)] rounded-[8px] bg-white/95 px-3 py-2 shadow-lg backdrop-blur">
+        <div className="route-map-badge absolute bottom-4 left-4 z-10 max-w-[calc(100%-2rem)] rounded-[8px] bg-white/95 px-3 py-2 shadow-lg backdrop-blur">
           {hasRoute ? (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-black text-[#101828]">
               <span className="flex items-center gap-1.5">

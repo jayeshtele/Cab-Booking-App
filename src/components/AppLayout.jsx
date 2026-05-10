@@ -64,12 +64,10 @@ export default function AppLayout() {
             {navigation.map((item) => (
               <NavItem key={item.to} item={item} />
             ))}
-            <span className="ml-2 border-l border-[#dfe7f1] pl-3">
-              <ThemeToggle />
-            </span>
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
+            <ThemeToggle />
             <button
               type="button"
               className="grid h-10 w-10 place-items-center rounded-[8px] border border-[#d8e0ea] bg-white text-[#526071] transition hover:border-[#155eef] hover:text-[#155eef]"

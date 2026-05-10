@@ -2,7 +2,10 @@ import { CalendarClock, Gauge, ShieldCheck, WalletCards } from 'lucide-react';
 import BookingForm from '../components/BookingForm.jsx';
 import CabPicker from '../components/CabPicker.jsx';
 import PageHeader from '../components/PageHeader.jsx';
+import RouteMap from '../components/RouteMap.jsx';
 import RouteSummary from '../components/RouteSummary.jsx';
+import { useSelector } from 'react-redux';
+import { selectBooking } from '../store/selectors.js';
 
 const stats = [
   { label: 'Average pickup', value: '5 min', icon: CalendarClock, tone: '#155eef' },
@@ -12,6 +15,8 @@ const stats = [
 ];
 
 export default function BookRide() {
+  const booking = useSelector(selectBooking);
+
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
       <PageHeader
@@ -43,9 +48,17 @@ export default function BookRide() {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)]">
         <div className="flex flex-col gap-6">
           <BookingForm />
+          <div className="xl:hidden">
+            <RouteMap booking={booking} />
+          </div>
           <CabPicker />
         </div>
-        <RouteSummary />
+        <div className="xl:hidden">
+          <RouteSummary showMap={false} />
+        </div>
+        <div className="hidden xl:block">
+          <RouteSummary />
+        </div>
       </div>
     </div>
   );

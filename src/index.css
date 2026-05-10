@@ -81,6 +81,17 @@ button:disabled {
   color: #7d8a9a;
 }
 
+.field-control option {
+  background: #ffffff;
+  color: #101828;
+}
+
+.route-leaflet-map .leaflet-pane,
+.route-leaflet-map .leaflet-top,
+.route-leaflet-map .leaflet-bottom {
+  z-index: 1;
+}
+
 .map-grid {
   background:
     linear-gradient(90deg, rgba(21, 94, 239, 0.12) 1px, transparent 1px),
@@ -192,6 +203,11 @@ html.dark [class~="bg-[#101828]"] {
 }
 
 html.dark .field-control {
+  color: #f8fafc;
+}
+
+html.dark .field-control option {
+  background: #101010;
   color: #f8fafc;
 }
 
