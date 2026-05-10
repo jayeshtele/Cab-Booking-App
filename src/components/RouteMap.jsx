@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { CircleMarker, MapContainer, Polyline, Popup, TileLayer, useMap } from 'react-leaflet';
 import { AlertCircle, Clock3, Loader2, LocateFixed, MapPinned, Navigation, Route } from 'lucide-react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { resetRideStatus, updateBookingField } from '../store/bookingSlice.js';
 import {
   formatDistance,
@@ -25,7 +25,7 @@ function FitBounds({ points }) {
   return null;
 }
 
-function LocationMarker({ center, label, color, type, isDark }) {
+function LocationMarker({ center, label, color, type }) {
   if (!center) {
     return null;
   }
@@ -34,7 +34,7 @@ function LocationMarker({ center, label, color, type, isDark }) {
     <CircleMarker
       center={center}
       pathOptions={{
-        color: isDark ? '#f8fafc' : color,
+        color,
         fillColor: color,
         fillOpacity: 1,
         opacity: 1,
@@ -61,7 +61,6 @@ function selectedPlaceCenter(place) {
 
 export default function RouteMap({ booking }) {
   const dispatch = useDispatch();
-  const themeMode = useSelector((state) => state.theme.mode);
   const [routeState, setRouteState] = useState({
     status: 'idle',
     data: null,
@@ -89,7 +88,6 @@ export default function RouteMap({ booking }) {
   const routePoints = routeState.data?.coordinates || [pickupCenter, dropoffCenter].filter(Boolean);
   const mapCenter = pickupCenter || dropoffCenter || mumbaiCenter;
   const hasRoute = routeState.status === 'success' && routeState.data;
-  const isDark = themeMode === 'dark';
 
   useEffect(() => {
     setRouteState({ status: 'idle', data: null, error: '' });
@@ -128,32 +126,23 @@ export default function RouteMap({ booking }) {
           zoom={12}
         >
           <TileLayer
-            key={isDark ? 'dark-map' : 'light-map'}
-            attribution={
-              isDark
-                ? '&copy; OpenStreetMap &copy; CARTO'
-                : '&copy; OpenStreetMap contributors'
-            }
-            url={
-              isDark
-                ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-                : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-            }
+            attribution="&copy; OpenStreetMap contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <FitBounds points={routePoints} />
           {hasRoute ? (
             <>
               <Polyline
                 pathOptions={{
-                  color: isDark ? '#f8fafc' : '#ffffff',
-                  opacity: isDark ? 0.9 : 0.95,
+                  color: '#ffffff',
+                  opacity: 0.95,
                   weight: 10,
                 }}
                 positions={routeState.data.coordinates}
               />
               <Polyline
                 pathOptions={{
-                  color: isDark ? '#ffb020' : '#155eef',
+                  color: '#155eef',
                   opacity: 1,
                   weight: 6,
                 }}
@@ -164,14 +153,12 @@ export default function RouteMap({ booking }) {
           <LocationMarker
             center={pickupCenter}
             color="#00a878"
-            isDark={isDark}
             label={booking.pickup}
             type="Pickup"
           />
           <LocationMarker
             center={dropoffCenter}
             color="#ef4444"
-            isDark={isDark}
             label={booking.dropoff}
             type="Drop"
           />

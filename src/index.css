@@ -216,67 +216,22 @@ html.dark .route-line {
   background-image: linear-gradient(180deg, #75a7ff, #4ade80);
 }
 
-html.dark .route-leaflet-map {
-  background: #050505;
-}
-
-html.dark .route-leaflet-map .leaflet-tile-pane {
-  filter: brightness(1.16) contrast(1.14) saturate(1.08);
-}
-
-html.dark .route-leaflet-map .leaflet-control-zoom {
-  border: 1px solid #3a3a3a;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-}
-
-html.dark .route-leaflet-map .leaflet-control-zoom a {
-  background: #101010;
-  border-bottom-color: #2a2a2a;
-  color: #f8fafc;
-}
-
-html.dark .route-leaflet-map .leaflet-control-zoom a:hover,
-html.dark .route-leaflet-map .leaflet-control-zoom a:focus {
-  background: #1f1f1f;
-  color: #ffb020;
-}
-
-html.dark .route-leaflet-map .leaflet-control-attribution {
-  background: rgba(5, 5, 5, 0.84);
-  color: #d6d6d6;
-}
-
-html.dark .route-leaflet-map .leaflet-control-attribution a {
-  color: #ffcf70;
-}
-
-html.dark .route-leaflet-map .leaflet-popup-content-wrapper,
-html.dark .route-leaflet-map .leaflet-popup-tip {
-  background: #101010;
-  color: #f8fafc;
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
-}
-
-html.dark .route-leaflet-map .leaflet-popup-content {
-  color: #f8fafc;
-}
-
-html.dark .route-leaflet-map .leaflet-popup-close-button {
-  color: #d6d6d6;
-}
-
-html.dark .route-leaflet-map .leaflet-popup-close-button:hover {
-  color: #ffb020;
-}
-
 html.dark .route-map-action {
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.55);
 }
 
 html.dark .route-map-badge {
-  background: rgba(16, 16, 16, 0.94) !important;
-  border: 1px solid #3a3a3a;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #dfe7f1;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.58);
+}
+
+html.dark .route-map-badge [class~="text-[#101828]"] {
+  color: #101828 !important;
+}
+
+html.dark .route-map-badge [class~="text-[#155eef]"] {
+  color: #155eef !important;
 }
 
 @media (max-width: 420px) {
