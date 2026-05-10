@@ -12,7 +12,7 @@ export default function ThemeSync() {
 
     const themeColor = document.querySelector('meta[name="theme-color"]');
     if (themeColor) {
-      themeColor.setAttribute('content', isDark ? '#0b1220' : '#f6f8fb');
+      themeColor.setAttribute('content', isDark ? '#050505' : '#f6f8fb');
     }
   }, [mode]);
 

@@ -92,3 +92,126 @@ button:disabled {
 .route-line {
   background-image: linear-gradient(180deg, #155eef, #00a878);
 }
+
+html.dark body {
+  background:
+    linear-gradient(180deg, rgba(255, 176, 32, 0.08), rgba(5, 5, 5, 0) 300px),
+    #050505;
+  color: #e6edf7;
+}
+
+html.dark .app-surface {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    #0b0b0d;
+  background-size: 32px 32px;
+}
+
+html.dark .field-shell,
+html.dark [class~="bg-white"] {
+  background-color: #101010 !important;
+}
+
+html.dark [class~="bg-white/90"] {
+  background-color: rgba(16, 16, 16, 0.94) !important;
+}
+
+html.dark [class~="bg-white/95"] {
+  background-color: rgba(16, 16, 16, 0.98) !important;
+}
+
+html.dark .field-shell,
+html.dark [class~="border-[#dfe7f1]"],
+html.dark [class~="border-[#d8e0ea]"],
+html.dark [class~="border-[#edf2f7]"] {
+  border-color: #2a2a2a !important;
+}
+
+html.dark [class~="divide-[#edf2f7]"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #2a2a2a !important;
+}
+
+html.dark [class~="text-[#101828]"],
+html.dark [class~="text-[#17202a]"],
+html.dark [class~="text-[#344054]"] {
+  color: #f8fafc !important;
+}
+
+html.dark [class~="text-[#526071]"],
+html.dark [class~="text-[#667085]"],
+html.dark [class~="text-[#7d8a9a]"],
+html.dark [class~="text-[#475467]"],
+html.dark [class~="text-[#d0d5dd]"] {
+  color: #b8b8b8 !important;
+}
+
+html.dark [class~="text-[#155eef]"] {
+  color: #75a7ff !important;
+}
+
+html.dark [class~="text-[#00a878]"],
+html.dark [class~="text-[#057647]"] {
+  color: #4ade80 !important;
+}
+
+html.dark [class~="text-[#ef4444]"],
+html.dark [class~="text-[#b42318]"] {
+  color: #fb7185 !important;
+}
+
+html.dark [class~="text-[#9a5b00]"] {
+  color: #fbbf24 !important;
+}
+
+html.dark [class~="bg-[#f8fafc]"],
+html.dark [class~="bg-[#f2f4f7]"] {
+  background-color: #171717 !important;
+}
+
+html.dark [class~="bg-[#eef4ff]"],
+html.dark [class~="hover:bg-[#eef4ff]"]:hover,
+html.dark [class~="hover:bg-[#dce8ff]"]:hover {
+  background-color: #1f1f1f !important;
+}
+
+html.dark [class~="bg-[#e8f7ef]"] {
+  background-color: #14231b !important;
+}
+
+html.dark [class~="bg-[#feecec]"] {
+  background-color: #281417 !important;
+}
+
+html.dark [class~="bg-[#fff7e6]"] {
+  background-color: #261d0c !important;
+}
+
+html.dark [class~="bg-[#101828]"] {
+  background-color: #050505 !important;
+}
+
+html.dark .field-control {
+  color: #f8fafc;
+}
+
+html.dark .field-control::placeholder {
+  color: #888888;
+}
+
+html.dark input[type="date"]::-webkit-calendar-picker-indicator,
+html.dark input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+html.dark .map-grid {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(135deg, #101010 0%, #050505 100%);
+  background-size: 34px 34px, 34px 34px, auto;
+}
+
+html.dark .route-line {
+  background-image: linear-gradient(180deg, #75a7ff, #4ade80);
+}
