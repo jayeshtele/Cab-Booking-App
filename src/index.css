@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(21, 94, 239, 0.06), rgba(255, 255, 255, 0) 280px),
+    #f6f8fb;
+  color: #17202a;
+  font-family: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+::selection {
+  background: #155eef;
+  color: #ffffff;
+}
+
+.app-surface {
+  background:
+    linear-gradient(90deg, rgba(21, 94, 239, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(16, 24, 40, 0.05) 1px, transparent 1px),
+    #ffffff;
+  background-size: 32px 32px;
+}
+
+.field-shell {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid #d8e0ea;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.7rem 0.85rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.field-shell:focus-within {
+  border-color: #155eef;
+  box-shadow: 0 0 0 4px rgba(21, 94, 239, 0.12);
+}
+
+.field-control {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #17202a;
+  outline: none;
+}
+
+.field-control::placeholder {
+  color: #7d8a9a;
+}
+
+.map-grid {
+  background:
+    linear-gradient(90deg, rgba(21, 94, 239, 0.12) 1px, transparent 1px),
+    linear-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px),
+    linear-gradient(135deg, #f8fbff 0%, #eef8f5 100%);
+  background-size: 34px 34px, 34px 34px, auto;
+}
+
+.route-line {
+  background-image: linear-gradient(180deg, #155eef, #00a878);
+}
