@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, Loader2, MapPin, Search, XCircle } from 'lucide-react';
 import { searchLocations } from '../utils/mapDirections.js';
 
@@ -13,7 +13,6 @@ export default function LocationSearchField({
   onTextChange,
   onPlaceSelect,
 }) {
-  const helperId = useId();
   const [isFocused, setIsFocused] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [status, setStatus] = useState('idle');
@@ -88,7 +87,6 @@ export default function LocationSearchField({
           onChange={(event) => onTextChange(event.target.value)}
           onFocus={handleFocus}
           placeholder={placeholder}
-          aria-describedby={helperId}
           autoComplete="off"
         />
         {status === 'loading' ? (
@@ -99,12 +97,6 @@ export default function LocationSearchField({
           <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-[#7d8a9a]" />
         )}
       </div>
-
-      <p id={helperId} className="mt-1.5 text-xs font-semibold text-[#667085]">
-        {exactSelection
-          ? `Exact point selected: ${selectedPlace.address}`
-          : 'Search and select a suggestion for accurate global routing.'}
-      </p>
 
       {isFocused && (suggestions.length > 0 || status === 'empty' || status === 'error') ? (
         <div className="location-results absolute z-[700] mt-2 max-h-72 w-full overflow-y-auto rounded-[8px] border border-[#dfe7f1] bg-white p-2 shadow-xl">
