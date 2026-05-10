@@ -13,6 +13,7 @@ const initialState = {
   selectedCabId: 'city-sedan',
   promoCode: 'CITY20',
   estimatedDistance: 13.6,
+  estimatedDuration: 28,
   rideStatus: 'Planning',
   recentTrips: tripHistory,
 };

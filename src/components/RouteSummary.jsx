@@ -2,20 +2,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   ArrowRight,
   BadgePercent,
-  CalendarClock,
   CarTaxiFront,
   CheckCircle2,
   Clock3,
   CreditCard,
-  MapPin,
-  Navigation,
-  Route,
   ShieldCheck,
   Sparkles,
-  Users,
 } from 'lucide-react';
+import RouteMap from './RouteMap.jsx';
 import { confirmRide } from '../store/bookingSlice.js';
 import { selectBooking, selectFareBreakup, selectSelectedCab } from '../store/selectors.js';
+import { formatDuration } from '../utils/mapDirections.js';
 
 function SummaryRow({ label, value }) {
   return (
@@ -34,36 +31,7 @@ export default function RouteSummary() {
 
   return (
     <aside className="flex flex-col gap-5">
-      <section className="map-grid relative min-h-[292px] overflow-hidden rounded-[8px] border border-[#dfe7f1] p-5 shadow-sm">
-        <div className="absolute left-12 top-16 h-36 w-1 rounded-full route-line" aria-hidden="true" />
-        <div className="relative z-10 flex items-start gap-4">
-          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[8px] bg-[#e8f7ef] text-[#00a878]">
-            <MapPin aria-hidden="true" className="h-6 w-6" />
-          </span>
-          <div className="min-w-0 rounded-[8px] bg-white/90 p-3 shadow-sm">
-            <p className="text-xs font-bold uppercase text-[#00a878]">Pickup</p>
-            <p className="truncate text-base font-black text-[#101828]">{booking.pickup}</p>
-          </div>
-        </div>
-
-        <div className="relative z-10 mt-16 flex items-start gap-4">
-          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[8px] bg-[#feecec] text-[#ef4444]">
-            <Navigation aria-hidden="true" className="h-6 w-6" />
-          </span>
-          <div className="min-w-0 rounded-[8px] bg-white/90 p-3 shadow-sm">
-            <p className="text-xs font-bold uppercase text-[#ef4444]">Drop</p>
-            <p className="truncate text-base font-black text-[#101828]">{booking.dropoff}</p>
-          </div>
-        </div>
-
-        <div className="absolute bottom-5 right-5 z-10 rounded-[8px] bg-[#101828] px-4 py-3 text-white shadow-lg">
-          <div className="flex items-center gap-2 text-sm font-semibold text-[#d0d5dd]">
-            <Route aria-hidden="true" className="h-4 w-4 text-[#ffb020]" />
-            {booking.estimatedDistance.toFixed(1)} km
-          </div>
-          <div className="mt-1 text-2xl font-black">Rs {fare.total}</div>
-        </div>
-      </section>
+      <RouteMap booking={booking} />
 
       <section className="rounded-[8px] border border-[#dfe7f1] bg-white p-4 shadow-sm sm:p-5">
         <div className="flex items-center justify-between gap-3 border-b border-[#edf2f7] pb-4">
@@ -80,6 +48,8 @@ export default function RouteSummary() {
           <SummaryRow label="Schedule" value={`${booking.date} at ${booking.time}`} />
           <SummaryRow label="Passengers" value={booking.passengers} />
           <SummaryRow label="Payment" value={booking.paymentMethod} />
+          <SummaryRow label="Route distance" value={`${booking.estimatedDistance.toFixed(1)} km`} />
+          <SummaryRow label="Travel time" value={formatDuration(booking.estimatedDuration)} />
           <SummaryRow label="Subtotal" value={`Rs ${fare.subtotal}`} />
           <SummaryRow label={`Offer ${booking.promoCode}`} value={`- Rs ${fare.discount}`} />
           <SummaryRow label="Taxes" value={`Rs ${fare.taxes}`} />
