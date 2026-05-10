@@ -51,6 +51,14 @@ function LocationMarker({ center, label, color, type, isDark }) {
   );
 }
 
+function selectedPlaceCenter(place) {
+  if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lng)) {
+    return null;
+  }
+
+  return [place.lat, place.lng];
+}
+
 export default function RouteMap({ booking }) {
   const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.theme.mode);
@@ -62,13 +70,19 @@ export default function RouteMap({ booking }) {
 
   const knownPickup = useMemo(() => getKnownCoordinates(booking.pickup), [booking.pickup]);
   const knownDropoff = useMemo(() => getKnownCoordinates(booking.dropoff), [booking.dropoff]);
+  const selectedPickupCenter = selectedPlaceCenter(booking.pickupPlace);
+  const selectedDropoffCenter = selectedPlaceCenter(booking.dropoffPlace);
   const pickupCenter = routeState.data?.pickup
     ? [routeState.data.pickup.lat, routeState.data.pickup.lng]
+    : selectedPickupCenter
+      ? selectedPickupCenter
     : knownPickup
       ? [knownPickup.lat, knownPickup.lng]
       : null;
   const dropoffCenter = routeState.data?.dropoff
     ? [routeState.data.dropoff.lat, routeState.data.dropoff.lng]
+    : selectedDropoffCenter
+      ? selectedDropoffCenter
     : knownDropoff
       ? [knownDropoff.lat, knownDropoff.lng]
       : null;
@@ -79,13 +93,18 @@ export default function RouteMap({ booking }) {
 
   useEffect(() => {
     setRouteState({ status: 'idle', data: null, error: '' });
-  }, [booking.pickup, booking.dropoff]);
+  }, [booking.pickup, booking.pickupPlace, booking.dropoff, booking.dropoffPlace]);
 
   const handleDirections = async () => {
     setRouteState({ status: 'loading', data: null, error: '' });
 
     try {
-      const directions = await getDrivingDirections(booking.pickup, booking.dropoff);
+      const directions = await getDrivingDirections(
+        booking.pickup,
+        booking.dropoff,
+        booking.pickupPlace,
+        booking.dropoffPlace,
+      );
       setRouteState({ status: 'success', data: directions, error: '' });
       dispatch(updateBookingField({ field: 'estimatedDistance', value: directions.distanceKm }));
       dispatch(updateBookingField({ field: 'estimatedDuration', value: directions.durationMin }));

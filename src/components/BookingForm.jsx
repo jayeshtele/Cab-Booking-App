@@ -3,7 +3,6 @@ import {
   Clock3,
   CreditCard,
   LocateFixed,
-  MapPin,
   Minus,
   Navigation,
   Plus,
@@ -11,8 +10,8 @@ import {
   Users,
 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { popularPlaces } from '../data/cabs.js';
-import { resetRideStatus, setPassengers, updateBookingField } from '../store/bookingSlice.js';
+import LocationSearchField from './LocationSearchField.jsx';
+import { resetRideStatus, setLocation, setPassengers, updateBookingField } from '../store/bookingSlice.js';
 import { selectBooking } from '../store/selectors.js';
 
 const paymentMethods = ['UPI', 'Credit card', 'Debit card', 'Cash'];
@@ -36,6 +35,11 @@ export default function BookingForm() {
     dispatch(resetRideStatus());
   };
 
+  const updateLocation = (field, place) => {
+    dispatch(setLocation({ field, place }));
+    dispatch(resetRideStatus());
+  };
+
   return (
     <section className="rounded-[8px] border border-[#dfe7f1] bg-white p-4 shadow-sm sm:p-5">
       <div className="flex items-center justify-between gap-3 border-b border-[#edf2f7] pb-4">
@@ -49,45 +53,29 @@ export default function BookingForm() {
       </div>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
-        <div>
-          <FieldLabel htmlFor="pickup" icon={LocateFixed}>
-            Pickup
-          </FieldLabel>
-          <div className="field-shell">
-            <MapPin aria-hidden="true" className="h-5 w-5 shrink-0 text-[#00a878]" />
-            <input
-              id="pickup"
-              list="popular-places"
-              className="field-control"
-              value={booking.pickup}
-              onChange={(event) => updateField('pickup', event.target.value)}
-              placeholder="Enter pickup location"
-            />
-          </div>
-        </div>
+        <LocationSearchField
+          id="pickup"
+          label="Pickup"
+          icon={LocateFixed}
+          markerColor="#00a878"
+          placeholder="Search any pickup location worldwide"
+          value={booking.pickup}
+          selectedPlace={booking.pickupPlace}
+          onTextChange={(value) => updateField('pickup', value)}
+          onPlaceSelect={(place) => updateLocation('pickup', place)}
+        />
 
-        <div>
-          <FieldLabel htmlFor="dropoff" icon={Navigation}>
-            Drop
-          </FieldLabel>
-          <div className="field-shell">
-            <MapPin aria-hidden="true" className="h-5 w-5 shrink-0 text-[#ef4444]" />
-            <input
-              id="dropoff"
-              list="popular-places"
-              className="field-control"
-              value={booking.dropoff}
-              onChange={(event) => updateField('dropoff', event.target.value)}
-              placeholder="Enter drop location"
-            />
-          </div>
-        </div>
-
-        <datalist id="popular-places">
-          {popularPlaces.map((place) => (
-            <option value={place} key={place} />
-          ))}
-        </datalist>
+        <LocationSearchField
+          id="dropoff"
+          label="Drop"
+          icon={Navigation}
+          markerColor="#ef4444"
+          placeholder="Search any drop location worldwide"
+          value={booking.dropoff}
+          selectedPlace={booking.dropoffPlace}
+          onTextChange={(value) => updateField('dropoff', value)}
+          onPlaceSelect={(place) => updateLocation('dropoff', place)}
+        />
 
         <div>
           <FieldLabel htmlFor="date" icon={CalendarDays}>

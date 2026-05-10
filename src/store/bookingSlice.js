@@ -6,6 +6,18 @@ const today = new Date().toISOString().slice(0, 10);
 const initialState = {
   pickup: 'Chhatrapati Shivaji Terminus',
   dropoff: 'Bandra Kurla Complex',
+  pickupPlace: {
+    label: 'Chhatrapati Shivaji Terminus',
+    address: 'Chhatrapati Shivaji Terminus, Mumbai, Maharashtra, India',
+    lat: 18.9398,
+    lng: 72.8355,
+  },
+  dropoffPlace: {
+    label: 'Bandra Kurla Complex',
+    address: 'Bandra Kurla Complex, Mumbai, Maharashtra, India',
+    lat: 19.066,
+    lng: 72.8676,
+  },
   date: today,
   time: '18:30',
   passengers: 2,
@@ -25,6 +37,20 @@ const bookingSlice = createSlice({
     updateBookingField(state, action) {
       const { field, value } = action.payload;
       state[field] = value;
+
+      if (field === 'pickup') {
+        state.pickupPlace = null;
+      }
+
+      if (field === 'dropoff') {
+        state.dropoffPlace = null;
+      }
+    },
+    setLocation(state, action) {
+      const { field, place } = action.payload;
+      const placeField = field === 'pickup' ? 'pickupPlace' : 'dropoffPlace';
+      state[field] = place.label;
+      state[placeField] = place;
     },
     setPassengers(state, action) {
       state.passengers = Math.min(6, Math.max(1, action.payload));
@@ -57,6 +83,7 @@ const bookingSlice = createSlice({
 
 export const {
   updateBookingField,
+  setLocation,
   setPassengers,
   selectCab,
   applyOffer,
