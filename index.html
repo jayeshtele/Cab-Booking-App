@@ -7,8 +7,22 @@
       name="description"
       content="CabSwift is a responsive React cab booking web app with live fare estimates, trip management, offers, and support."
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#f6f8fb" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <title>CabSwift | Book a Ride</title>
+    <script>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem('cabswift-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+          document.documentElement.classList.toggle('dark', isDark);
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+        } catch {
+          document.documentElement.style.colorScheme = 'light';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

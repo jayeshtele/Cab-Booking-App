@@ -11,6 +11,7 @@ import {
   UserRound,
   X,
 } from 'lucide-react';
+import ThemeToggle from './ThemeToggle.jsx';
 
 const navigation = [
   { to: '/book', label: 'Book', icon: MapPinned },
@@ -66,6 +67,7 @@ export default function AppLayout() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
+            <ThemeToggle />
             <button
               type="button"
               className="grid h-10 w-10 place-items-center rounded-[8px] border border-[#d8e0ea] bg-white text-[#526071] transition hover:border-[#155eef] hover:text-[#155eef]"
@@ -83,14 +85,17 @@ export default function AppLayout() {
             </button>
           </div>
 
-          <button
-            type="button"
-            className="grid h-10 w-10 place-items-center rounded-[8px] border border-[#d8e0ea] bg-white text-[#17202a] md:hidden"
-            onClick={() => setMobileOpen((open) => !open)}
-            aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
-          >
-            {mobileOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="grid h-10 w-10 place-items-center rounded-[8px] border border-[#d8e0ea] bg-white text-[#17202a]"
+              onClick={() => setMobileOpen((open) => !open)}
+              aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+            >
+              {mobileOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {mobileOpen ? (

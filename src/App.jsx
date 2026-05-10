@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AppLayout from './components/AppLayout.jsx';
+import ThemeSync from './components/ThemeSync.jsx';
 import { useDocumentTitle } from './hooks/useDocumentTitle.js';
 import BookRide from './pages/BookRide.jsx';
 import MyTrips from './pages/MyTrips.jsx';
@@ -16,7 +17,7 @@ const pageTitles = {
 
 function AppTitle() {
   const location = useLocation();
-  const title = pageTitles[location.pathname] || 'Cab Booking';
+  const title = pageTitles[location.pathname] || 'Route Not Found';
   useDocumentTitle(`${title} | CabSwift`);
   return null;
 }
@@ -24,6 +25,7 @@ function AppTitle() {
 export default function App() {
   return (
     <>
+      <ThemeSync />
       <AppTitle />
       <Routes>
         <Route element={<AppLayout />}>

@@ -1,9 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CabSwift">
   <rect width="64" height="64" rx="14" fill="#101828"/>
-  <path d="M17 34h30l-3.6-10.5A6 6 0 0 0 37.7 19H26.3a6 6 0 0 0-5.7 4.5L17 34Z" fill="#ffb020"/>
-  <path d="M20 34h24a7 7 0 0 1 7 7v6H13v-6a7 7 0 0 1 7-7Z" fill="#ffffff"/>
-  <path d="M24 27h16l1.6 5H22.4L24 27Z" fill="#155eef"/>
-  <circle cx="22" cy="47" r="4" fill="#101828"/>
-  <circle cx="42" cy="47" r="4" fill="#101828"/>
-  <path d="M24 14h16v5H24z" fill="#ffb020"/>
+  <g
+    transform="translate(14 12) scale(1.5)"
+    fill="none"
+    stroke="#ffb020"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  >
+    <path d="M10 2h4"/>
+    <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/>
+    <path d="M7 14h.01"/>
+    <path d="M17 14h.01"/>
+    <rect width="18" height="8" x="3" y="10" rx="2"/>
+    <path d="M5 18v2"/>
+    <path d="M19 18v2"/>
+  </g>
 </svg>
