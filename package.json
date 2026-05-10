@@ -1,0 +1,44 @@
+{
+  "name": "cab-booking-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Responsive cab booking web app built with React, Vite, Tailwind CSS, React Router, and Redux Toolkit.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayeshtele/Cab-Booking-App.git"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "tailwindcss",
+    "redux-toolkit",
+    "cab-booking"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jayeshtele/Cab-Booking-App/issues"
+  },
+  "homepage": "https://github.com/jayeshtele/Cab-Booking-App#readme",
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@reduxjs/toolkit": "^2.11.2",
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.15.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.3.0",
+    "vite": "^8.0.11"
+  }
+}
